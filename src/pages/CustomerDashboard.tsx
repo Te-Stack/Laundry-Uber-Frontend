@@ -15,6 +15,7 @@ import { useApp } from "@/contexts/AppContext"
 import { useAsyncAction } from "@/hooks/useAsyncAction"
 import { laundryApi } from "@/services/laundryApi"
 import type { LaundryRequest } from "@/types/app"
+import { getStatusColor } from "@/utils/statusColors"
 
 // ============================================================================
 // CustomerDashboard
@@ -94,20 +95,6 @@ export function CustomerDashboard() {
         } catch {
             return
         }
-    }
-
-    const getStatusColor = (status: string) => {
-        const colors: Record<string, string> = {
-            pending:          "bg-yellow-100 text-yellow-800",
-            accepted:         "bg-blue-100 text-blue-800",
-            declined:         "bg-red-100 text-red-800",
-            picked_up:        "bg-purple-100 text-purple-800",
-            washing:          "bg-indigo-100 text-indigo-800",
-            ready:            "bg-green-100 text-green-800",
-            out_for_delivery: "bg-orange-100 text-orange-800",
-            delivered:        "bg-gray-100 text-gray-800",
-        }
-        return colors[status] || "bg-gray-100 text-gray-800"
     }
 
     const userRequests = requests.filter((req) => req.customerId === user?.id)

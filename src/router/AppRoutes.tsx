@@ -22,8 +22,12 @@ interface AppRoutesProps {
 
 // ============================================================================
 // AppRoutes
-// Declares all application routes. Protected routes are wrapped in
-// ProtectedRoute and SocketProvider for real-time features.
+// Declares all application routes.
+//
+// SocketProvider is lifted to wrap the entire protected zone once — previously
+// each route mounted its own SocketProvider, causing a new socket connection
+// on every navigation. Now a single persistent connection is shared across
+// all protected pages.
 // ============================================================================
 
 export function AppRoutes({ isAuthenticated }: AppRoutesProps) {
@@ -35,116 +39,29 @@ export function AppRoutes({ isAuthenticated }: AppRoutesProps) {
                 element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthGate />}
             />
 
-            {/* Payment callback - accessible without full nav */}
+            {/* Payment callback - accessible without full nav, no socket needed */}
             <Route path="/payment/callback" element={<PaymentCallback />} />
 
-            {/* Protected routes - wrapped in SocketProvider for real-time features */}
+            {/* Protected routes — wrapped in a single SocketProvider so the
+                WebSocket connection persists across page navigations */}
             <Route
-                path="/dashboard"
+                path="/*"
                 element={
                     <ProtectedRoute>
                         <SocketProvider>
-                            <DashboardPage />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/services"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <Services />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/my-services"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <MyServices />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/schedule"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <Schedule />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/map"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <MapPage />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/messages"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <Messages />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/messages/:userId"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <Messages />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/notifications"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <Notifications />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/payments"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <PaymentHistory />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/profile"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <Profile />
-                        </SocketProvider>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/providers/:providerId"
-                element={
-                    <ProtectedRoute>
-                        <SocketProvider>
-                            <ProviderProfilePage />
+                            <Routes>
+                                <Route path="/dashboard"         element={<DashboardPage />} />
+                                <Route path="/services"          element={<Services />} />
+                                <Route path="/my-services"       element={<MyServices />} />
+                                <Route path="/schedule"          element={<Schedule />} />
+                                <Route path="/map"               element={<MapPage />} />
+                                <Route path="/messages"          element={<Messages />} />
+                                <Route path="/messages/:userId"  element={<Messages />} />
+                                <Route path="/notifications"     element={<Notifications />} />
+                                <Route path="/payments"          element={<PaymentHistory />} />
+                                <Route path="/profile"           element={<Profile />} />
+                                <Route path="/providers/:providerId" element={<ProviderProfilePage />} />
+                            </Routes>
                         </SocketProvider>
                     </ProtectedRoute>
                 }
