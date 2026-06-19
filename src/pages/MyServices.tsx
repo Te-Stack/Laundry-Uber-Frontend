@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import { useMyServices, useDeleteService } from '@/hooks/useServices';
 import { ServiceForm } from '@/components/services/ServiceForm';
+import { DeleteServiceDialog } from '@/components/services/DeleteServiceDialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Navigation } from '@/components/Navigation';
@@ -26,7 +27,7 @@ export function MyServices() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-background">
       <Navigation />
       <main className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
@@ -39,7 +40,7 @@ export function MyServices() {
 
         {/* Create/Edit form */}
         {showForm && (
-          <div className="bg-white rounded-xl border p-6 mb-6">
+          <div className="bg-white dark:bg-card rounded-xl border dark:border-border p-6 mb-6">
             <h2 className="font-semibold mb-4">
               {editingService ? 'Edit Service' : 'New Service'}
             </h2>
@@ -53,29 +54,29 @@ export function MyServices() {
 
         {/* Services list */}
         {isLoading ? (
-          <p className="text-center text-gray-400 py-12">Loading services...</p>
+          <p className="text-center text-gray-400 dark:text-gray-500 py-12">Loading services...</p>
         ) : services.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
+          <div className="text-center py-12 text-gray-400 dark:text-gray-500">
             <p>No services yet. Add your first service to get started!</p>
           </div>
         ) : (
           <div className="space-y-3">
             {services.map((service) => (
-              <div key={service.id} className="bg-white rounded-xl border p-4 flex items-start gap-4">
+              <div key={service.id} className="bg-white dark:bg-card rounded-xl border dark:border-border p-4 flex items-start gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h3 className="font-medium">{service.name}</h3>
-                    <Badge className="text-xs bg-gray-100 text-gray-600">
+                    <Badge className="text-xs bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-400">
                       {service.category.replace('_', ' ')}
                     </Badge>
                     {!service.isActive && (
-                      <Badge className="text-xs bg-red-100 text-red-600">Inactive</Badge>
+                      <Badge className="text-xs bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400">Inactive</Badge>
                     )}
                   </div>
                   {service.description && (
-                    <p className="text-sm text-gray-500 mt-1 truncate">{service.description}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 truncate">{service.description}</p>
                   )}
-                  <p className="text-sm font-semibold text-gray-900 mt-1">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-foreground mt-1">
                     ₦{service.basePrice.toLocaleString()} / {service.unit.replace('_', ' ')}
                   </p>
                 </div>
@@ -91,7 +92,7 @@ export function MyServices() {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="text-red-600 hover:bg-red-50"
+                    className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50"
                     onClick={() => setConfirmDeleteId(service.id)}
                   >
                     <Trash2 className="h-3.5 w-3.5" />
@@ -104,30 +105,11 @@ export function MyServices() {
 
         {/* Delete confirmation dialog */}
         {confirmDeleteId && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-xl p-6 max-w-sm mx-4 space-y-4">
-              <h3 className="font-semibold">Delete Service?</h3>
-              <p className="text-sm text-gray-500">
-                This action cannot be undone. The service will be permanently removed.
-              </p>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={() => setConfirmDeleteId(null)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                  onClick={() => handleDelete(confirmDeleteId)}
-                  disabled={isDeleting}
-                >
-                  {isDeleting ? 'Deleting...' : 'Delete'}
-                </Button>
-              </div>
-            </div>
-          </div>
+          <DeleteServiceDialog
+            isDeleting={isDeleting}
+            onCancel={() => setConfirmDeleteId(null)}
+            onConfirm={() => handleDelete(confirmDeleteId)}
+          />
         )}
       </main>
     </div>

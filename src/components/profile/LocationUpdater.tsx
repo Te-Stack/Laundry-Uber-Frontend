@@ -18,12 +18,12 @@ export function LocationUpdater() {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <MapPin className="h-4 w-4 text-gray-500" />
+        <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />
         <span className="text-sm font-medium">Current Location</span>
       </div>
 
       {isLoading && (
-        <p className="text-sm text-gray-400">Getting your location...</p>
+        <p className="text-sm text-gray-400 dark:text-gray-500">Getting your location...</p>
       )}
 
       {error && (
@@ -31,10 +31,10 @@ export function LocationUpdater() {
       )}
 
       {coords && (
-        <div className="text-sm text-gray-600 bg-gray-50 rounded-md px-3 py-2">
+        <div className="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-muted rounded-md px-3 py-2">
           <p>Latitude: {coords.latitude.toFixed(6)}</p>
           <p>Longitude: {coords.longitude.toFixed(6)}</p>
-          <p className="text-xs text-gray-400 mt-1">Accuracy: ±{Math.round(coords.accuracy)}m</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Accuracy: ±{Math.round(coords.accuracy)}m</p>
         </div>
       )}
 

@@ -41,7 +41,7 @@ export function MessageInput({ receiverId, requestId }: MessageInputProps) {
   const remaining = MAX_CHARS - content.length;
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 p-3 border-t bg-white">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 p-3 border-t dark:border-border bg-white dark:bg-card">
       <Textarea
         value={content}
         onChange={(e) => setContent(e.target.value.slice(0, MAX_CHARS))}
@@ -52,7 +52,7 @@ export function MessageInput({ receiverId, requestId }: MessageInputProps) {
         disabled={isPending}
       />
       <div className="flex items-center justify-between">
-        <span className={`text-xs ${remaining < 50 ? 'text-red-500' : 'text-gray-400'}`}>
+        <span className={`text-xs ${remaining < 50 ? 'text-red-500' : 'text-gray-400 dark:text-gray-500'}`}>
           {remaining} characters remaining
         </span>
         <Button

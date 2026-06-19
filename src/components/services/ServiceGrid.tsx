@@ -41,7 +41,7 @@ export function ServiceGrid({ onBook }: ServiceGridProps) {
     <div className="space-y-4">
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
         <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -66,9 +66,9 @@ export function ServiceGrid({ onBook }: ServiceGridProps) {
 
       {/* Grid */}
       {isLoading ? (
-        <div className="text-center py-12 text-gray-400">Loading services...</div>
+        <div className="text-center py-12 text-gray-400 dark:text-gray-500">Loading services...</div>
       ) : services.length === 0 ? (
-        <div className="text-center py-12 text-gray-400">No services found.</div>
+        <div className="text-center py-12 text-gray-400 dark:text-gray-500">No services found.</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service) => (

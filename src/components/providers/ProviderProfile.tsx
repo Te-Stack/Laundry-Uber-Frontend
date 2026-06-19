@@ -24,7 +24,7 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-48 text-gray-400">
+      <div className="flex items-center justify-center h-48 text-gray-400 dark:text-gray-500">
         Loading provider profile...
       </div>
     );
@@ -32,7 +32,7 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
 
   if (!provider) {
     return (
-      <div className="flex items-center justify-center h-48 text-gray-400">
+      <div className="flex items-center justify-center h-48 text-gray-400 dark:text-gray-500">
         Provider not found.
       </div>
     );
@@ -52,12 +52,12 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
           <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-xl font-bold">{provider.fullName}</h2>
             <Badge
-              className={provider.isOnline ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}
+              className={provider.isOnline ? 'bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400' : 'bg-gray-100 dark:bg-muted text-gray-500 dark:text-gray-400'}
             >
               {provider.isOnline ? 'Online' : 'Offline'}
             </Badge>
           </div>
-          <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+          <div className="flex items-center gap-3 mt-1 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-1">
               <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
               {provider.rating.toFixed(1)} ({provider.totalRatings} ratings)

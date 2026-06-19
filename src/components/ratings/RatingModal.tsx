@@ -33,9 +33,9 @@ export function RatingModal({ requestId, isOpen, onClose }: RatingModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md mx-4">
+      <div className="bg-white dark:bg-card rounded-xl shadow-xl p-6 w-full max-w-md mx-4">
         <h2 className="text-lg font-semibold mb-1">Rate Your Experience</h2>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
           How was your laundry service? Your feedback helps providers improve.
         </p>
 
@@ -43,7 +43,7 @@ export function RatingModal({ requestId, isOpen, onClose }: RatingModalProps) {
           <div className="flex flex-col items-center gap-2">
             <StarRating value={rating} onChange={setRating} size="lg" />
             {rating > 0 && (
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
                 {['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'][rating]}
               </span>
             )}

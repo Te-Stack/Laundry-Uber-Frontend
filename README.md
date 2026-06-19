@@ -10,9 +10,9 @@ A modern web application for managing laundry services, built with React, TypeSc
 - Component library with Radix UI
 - Responsive design
 - Type-safe development
-- **Backend API Integration** with JWT authentication
+- **Backend API Integration** with Better Auth cookie sessions
 - Real-time error handling and user feedback
-- Secure token management with localStorage
+- Secure cookie-based session management
 
 ## 🛠️ Tech Stack
 
@@ -48,12 +48,12 @@ Create a `.env.local` file in the frontend directory:
 
 ```env
 # API Configuration
-VITE_API_BASE_URL=http://localhost:3000/api
+VITE_BACKEND_URL=http://localhost:3000
 ```
 
 For production, update `.env.production`:
 ```env
-VITE_API_BASE_URL=https://api.laundryber.com/api
+VITE_BACKEND_URL=https://api.laundryber.com
 ```
 
 4. Ensure the backend server is running:
@@ -75,9 +75,9 @@ The application will be available at `http://localhost:5173`
 This frontend application integrates with the LaundryBer backend API. Key integration features:
 
 ### Authentication
-- JWT token-based authentication
-- Automatic token injection in API requests
-- Token persistence across page refreshes
+- Better Auth cookie-based authentication
+- Automatic credentialed API requests
+- Session persistence across page refreshes
 - Automatic logout on 401 errors
 
 ### API Client
@@ -89,8 +89,8 @@ This frontend application integrates with the LaundryBer backend API. Key integr
 
 ### Environment Configuration
 The API base URL is configured through environment variables:
-- **Development:** `http://localhost:3000/api` (default)
-- **Production:** Set `VITE_API_BASE_URL` in `.env.production`
+- **Development:** `http://localhost:3000` (default)
+- **Production:** Set `VITE_BACKEND_URL` in `.env.production`
 
 ### Error Handling
 The application handles various error scenarios:
@@ -110,7 +110,6 @@ frontend/
 │   ├── hooks/            # Custom React hooks
 │   ├── lib/              # Utility functions and helpers
 │   │   └── api/          # API client and error handling
-│   │       ├── auth.ts   # JWT token management
 │   │       ├── client.ts # Axios HTTP client
 │   │       └── errors.ts # Error transformation
 │   ├── services/         # API service layer
@@ -147,10 +146,9 @@ frontend/
 
 1. User selects account type (Customer or Provider)
 2. User logs in or registers with email and password
-3. Backend returns JWT token and user data
-4. Token is stored in localStorage
-5. Token is automatically included in all subsequent API requests
-6. On 401 error, user is logged out and redirected to login page
+3. Better Auth sets a secure session cookie
+4. Cookies are automatically included in credentialed API requests
+5. On 401 error, user is redirected to login
 
 ## 🌐 API Endpoints Used
 
@@ -181,14 +179,14 @@ frontend/
 ### Backend Connection Issues
 If you see "Network error" messages:
 1. Ensure the backend server is running on port 3000
-2. Check that `VITE_API_BASE_URL` is correctly set
+2. Check that `VITE_BACKEND_URL` is correctly set
 3. Verify CORS is enabled on the backend
 
 ### Authentication Issues
 If you're automatically logged out:
 1. Check browser console for 401 errors
-2. Verify JWT token is valid (check localStorage)
-3. Ensure backend JWT_SECRET is configured
+2. Verify the Better Auth session cookie is present
+3. Ensure backend `BETTER_AUTH_SECRET`, `BACKEND_URL`, and `FRONTEND_URL` are configured
 
 ### Build Issues
 If TypeScript compilation fails:
@@ -198,7 +196,7 @@ If TypeScript compilation fails:
 
 ## 📝 Development Notes
 
-- The application uses localStorage for JWT token persistence
+- The application uses Better Auth cookies for session persistence
 - All API calls are type-safe with TypeScript interfaces
 - Error messages are user-friendly and actionable
 - The UI automatically handles loading states during API calls

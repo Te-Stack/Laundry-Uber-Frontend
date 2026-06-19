@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { authManager } from '@/lib/api/auth';
+import { useAuth } from '@/contexts/AuthContext';
+
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  (import.meta.env.DEV ? 'http://localhost:3000' : window.location.origin);
 
 interface SocketContextValue {
   socket: Socket | null;
@@ -12,23 +16,22 @@ interface SocketContextValue {
 const SocketContext = createContext<SocketContextValue>({
   socket: null,
   isConnected: false,
-  joinRoom: () => {},
-  leaveRoom: () => {},
+  joinRoom: () => { },
+  leaveRoom: () => { },
 });
 
 export function SocketProvider({ children }: { children: React.ReactNode }) {
   const [isConnected, setIsConnected] = useState(false);
   const socketRef = useRef<Socket | null>(null);
   const joinedRoomsRef = useRef<Set<string>>(new Set());
+  const { data: session } = useAuth();
 
   useEffect(() => {
-    const token = authManager.getToken();
-    if (!token) return;
+    // Only connect if there is an active session
+    if (!session?.user) return;
 
-    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3000';
-
-    const socket = io(socketUrl, {
-      auth: { token },
+    const socket = io(backendUrl, {
+      withCredentials: true, // Send session cookie automatically
       reconnection: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 1000,
@@ -53,7 +56,7 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
       socket.disconnect();
       socketRef.current = null;
     };
-  }, []);
+  }, [session?.user?.id]);
 
   const joinRoom = (roomId: string) => {
     joinedRoomsRef.current.add(roomId);

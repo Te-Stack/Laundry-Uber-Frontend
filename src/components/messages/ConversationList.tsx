@@ -18,7 +18,7 @@ export function ConversationList({ activeUserId }: ConversationListProps) {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-32 text-gray-400">
+      <div className="flex items-center justify-center h-32 text-gray-400 dark:text-gray-500">
         Loading conversations...
       </div>
     );
@@ -26,14 +26,14 @@ export function ConversationList({ activeUserId }: ConversationListProps) {
 
   if (conversations.length === 0) {
     return (
-      <div className="flex items-center justify-center h-32 text-gray-400 text-sm">
+      <div className="flex items-center justify-center h-32 text-gray-400 dark:text-gray-500 text-sm">
         No conversations yet.
       </div>
     );
   }
 
   return (
-    <div className="divide-y divide-gray-100">
+    <div className="divide-y divide-gray-100 dark:divide-border">
       {conversations.map((conv) => {
         const isActive = conv.otherUser.id === activeUserId;
         const time = conv.lastMessage
@@ -47,8 +47,8 @@ export function ConversationList({ activeUserId }: ConversationListProps) {
           <button
             key={conv.otherUser.id}
             onClick={() => navigate(`/messages/${conv.otherUser.id}`)}
-            className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left ${
-              isActive ? 'bg-blue-50' : ''
+            className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-muted transition-colors text-left ${
+              isActive ? 'bg-blue-50 dark:bg-blue-900/20' : ''
             }`}
           >
             <Avatar className="h-10 w-10 flex-shrink-0">
@@ -57,9 +57,9 @@ export function ConversationList({ activeUserId }: ConversationListProps) {
             <div className="flex-1 min-w-0">
               <div className="flex justify-between items-baseline">
                 <span className="font-medium text-sm truncate">{conv.otherUser.fullName}</span>
-                <span className="text-xs text-gray-400 ml-2 flex-shrink-0">{time}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 flex-shrink-0">{time}</span>
               </div>
-              <p className="text-xs text-gray-500 truncate">
+              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                 {conv.lastMessage?.content ?? 'No messages yet'}
               </p>
             </div>

@@ -14,7 +14,7 @@ export function ConnectionStatus() {
           isConnected ? 'bg-green-500' : 'bg-red-500'
         }`}
       />
-      <span className="text-xs text-gray-500 hidden sm:inline">
+      <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">
         {isConnected ? 'Live' : 'Offline'}
       </span>
     </div>

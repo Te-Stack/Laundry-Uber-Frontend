@@ -1,10 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 import { toApiError } from './errors';
-import { authManager } from './auth';
+
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  (import.meta.env.DEV ? 'http://localhost:3000' : window.location.origin);
 
 /**
  * ApiClient provides a centralized HTTP client for making API requests.
- * Handles authentication token injection, error transformation, and 401 redirects.
+ * Uses cookie-based session auth (Better Auth) — no manual token injection needed.
+ * The browser sends the session cookie automatically via withCredentials: true.
  */
 class ApiClient {
   private axiosInstance: AxiosInstance;
@@ -12,40 +16,29 @@ class ApiClient {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
+      baseURL: `${backendUrl}/api`,
       timeout: 30000,
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true, // Send session cookies automatically
     });
 
     this.setupInterceptors();
   }
 
   /**
-   * Sets up request and response interceptors for authentication and error handling.
+   * Sets up response interceptors for error handling.
+   * No request interceptor needed — cookies are sent automatically.
    */
   private setupInterceptors(): void {
-    // Request interceptor: inject JWT token
-    this.axiosInstance.interceptors.request.use(
-      (config) => {
-        const token = authManager.getToken();
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => Promise.reject(error)
-    );
-
     // Response interceptor: handle 401 errors
     this.axiosInstance.interceptors.response.use(
       (response) => response,
       (error: AxiosError) => {
         if (error.response?.status === 401 && !this.isRedirecting) {
           this.isRedirecting = true;
-          authManager.clearToken();
-          window.location.href = '/login';
+          window.location.href = '/';
         }
         return Promise.reject(error);
       }

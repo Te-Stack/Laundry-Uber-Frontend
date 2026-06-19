@@ -32,35 +32,35 @@ export function ServiceCard({ service, onBook }: ServiceCardProps) {
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between gap-2">
           <CardTitle className="text-base">{service.name}</CardTitle>
-          <Badge className={`text-xs flex-shrink-0 ${categoryColors[service.category] ?? 'bg-gray-100 text-gray-700'}`}>
+          <Badge className={`text-xs flex-shrink-0 ${categoryColors[service.category] ?? 'bg-gray-100 dark:bg-muted text-gray-700 dark:text-gray-400'}`}>
             {service.category.replace('_', ' ')}
           </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
         {service.description && (
-          <p className="text-sm text-gray-500 line-clamp-2">{service.description}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{service.description}</p>
         )}
 
         <div className="flex items-baseline gap-1">
-          <span className="text-xl font-bold text-gray-900">
+          <span className="text-xl font-bold text-gray-900 dark:text-foreground">
             ₦{service.basePrice.toLocaleString()}
           </span>
-          <span className="text-sm text-gray-400">{unitLabels[service.unit] ?? service.unit}</span>
+          <span className="text-sm text-gray-400 dark:text-gray-500">{unitLabels[service.unit] ?? service.unit}</span>
         </div>
 
         {service.estimatedDuration > 0 && (
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-400 dark:text-gray-500">
             Est. {service.estimatedDuration}h turnaround
           </p>
         )}
 
         {service.provider && (
           <div className="flex items-center gap-2 pt-1 border-t">
-            <span className="text-xs text-gray-500 truncate">{service.provider.fullName}</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 truncate">{service.provider.fullName}</span>
             <div className="flex items-center gap-0.5 ml-auto flex-shrink-0">
               <Star className="h-3 w-3 text-yellow-400 fill-current" />
-              <span className="text-xs text-gray-600">{service.provider.rating.toFixed(1)}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">{service.provider.rating.toFixed(1)}</span>
             </div>
           </div>
         )}

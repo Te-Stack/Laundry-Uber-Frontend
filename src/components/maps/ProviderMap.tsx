@@ -22,7 +22,7 @@ export function ProviderMap() {
 
   if (geoLoading) {
     return (
-      <div className="flex items-center justify-center h-64 text-gray-400">
+      <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-500">
         Getting your location...
       </div>
     );
@@ -51,7 +51,7 @@ export function ProviderMap() {
     <div className="space-y-4">
       {/* Radius slider */}
       <div className="flex items-center gap-3">
-        <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
           Radius: {radius}km
         </label>
         <input
@@ -73,9 +73,9 @@ export function ProviderMap() {
         {/* Provider list */}
         <div className="space-y-2 overflow-y-auto max-h-80">
           {providersLoading ? (
-            <p className="text-sm text-gray-400 text-center py-4">Loading providers...</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-4">Loading providers...</p>
           ) : providers.length === 0 ? (
-            <p className="text-sm text-gray-400 text-center py-4">
+            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-4">
               No providers found within {radius}km.
             </p>
           ) : (
@@ -86,19 +86,19 @@ export function ProviderMap() {
                   setSelectedProviderId(p.id);
                   navigate(`/providers/${p.id}`);
                 }}
-                className={`w-full text-left p-3 rounded-lg border transition-colors hover:bg-gray-50 ${
-                  selectedProviderId === p.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                className={`w-full text-left p-3 rounded-lg border transition-colors hover:bg-gray-50 dark:hover:bg-muted ${
+                  selectedProviderId === p.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-200 dark:border-border'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <span className="font-medium text-sm">{p.fullName}</span>
                   <span
-                    className={`h-2 w-2 rounded-full ${p.isOnline ? 'bg-green-500' : 'bg-gray-300'}`}
+                    className={`h-2 w-2 rounded-full ${p.isOnline ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}
                   />
                 </div>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-gray-500">⭐ {p.rating.toFixed(1)}</span>
-                  <span className="text-xs text-gray-400">{p.distance.toFixed(1)}km away</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">⭐ {p.rating.toFixed(1)}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500">{p.distance.toFixed(1)}km away</span>
                 </div>
               </button>
             ))

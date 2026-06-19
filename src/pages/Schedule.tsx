@@ -41,7 +41,7 @@ export function Schedule() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-background">
       <Navigation />
       <main className="max-w-2xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
@@ -49,17 +49,17 @@ export function Schedule() {
           <AvailabilityToggle />
         </div>
 
-        <div className="bg-white rounded-xl border p-6 space-y-6">
+        <div className="bg-white dark:bg-card rounded-xl border dark:border-border p-6 space-y-6">
           <div>
             <h2 className="font-semibold mb-1">Weekly Availability</h2>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
               Set your working hours for each day. Uncheck a day to mark it as unavailable.
             </p>
             <ScheduleGrid schedule={schedule} onChange={setSchedule} />
           </div>
 
           {isSuccess && (
-            <div className="rounded-md bg-green-50 border border-green-200 px-3 py-2 text-sm text-green-700">
+            <div className="rounded-md bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 px-3 py-2 text-sm text-green-700 dark:text-green-400">
               Schedule saved successfully!
             </div>
           )}

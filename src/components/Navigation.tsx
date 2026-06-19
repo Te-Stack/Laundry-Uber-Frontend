@@ -47,11 +47,11 @@ export function Navigation() {
   const links = userType === 'provider' ? providerLinks : customerLinks;
 
   return (
-    <nav className="bg-white border-b shadow-sm sticky top-0 z-40">
+    <nav className="bg-white dark:bg-card border-b dark:border-border shadow-sm sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <Link to="/dashboard" className="font-bold text-lg text-blue-600">
+          <Link to="/dashboard" className="font-bold text-lg text-blue-600 dark:text-blue-400">
             LaundryBer
           </Link>
 
@@ -65,8 +65,8 @@ export function Navigation() {
                   to={link.to}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-blue-50 text-blue-700'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-muted hover:text-gray-900 dark:hover:text-foreground'
                   }`}
                 >
                   {link.icon}
@@ -93,8 +93,8 @@ export function Navigation() {
                 to={link.to}
                 className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors ${
                   isActive
-                    ? 'bg-blue-50 text-blue-700'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-muted'
                 }`}
               >
                 {link.icon}

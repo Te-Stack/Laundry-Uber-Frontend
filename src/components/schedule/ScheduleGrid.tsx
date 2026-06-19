@@ -53,8 +53,8 @@ export function ScheduleGrid({ schedule, onChange, readonly = false }: ScheduleG
         return (
           <div
             key={key}
-            className={`flex items-center gap-4 p-3 rounded-lg border ${
-              isAvailable ? 'bg-white' : 'bg-gray-50'
+            className={`flex items-center gap-4 p-3 rounded-lg border dark:border-border ${
+              isAvailable ? 'bg-white dark:bg-card' : 'bg-gray-50 dark:bg-muted'
             }`}
           >
             {/* Day toggle */}
@@ -65,12 +65,12 @@ export function ScheduleGrid({ schedule, onChange, readonly = false }: ScheduleG
                   id={`day-${key}`}
                   checked={isAvailable}
                   onChange={(e) => handleDayToggle(key, e.target.checked)}
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                  className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-blue-600"
                 />
               )}
               <label
                 htmlFor={`day-${key}`}
-                className={`text-sm font-medium ${isAvailable ? 'text-gray-900' : 'text-gray-400'}`}
+                className={`text-sm font-medium ${isAvailable ? 'text-gray-900 dark:text-foreground' : 'text-gray-400 dark:text-gray-500'}`}
               >
                 {label}
               </label>
@@ -84,19 +84,19 @@ export function ScheduleGrid({ schedule, onChange, readonly = false }: ScheduleG
                   value={daySchedule?.start ?? '09:00'}
                   onChange={(e) => handleTimeChange(key, 'start', e.target.value)}
                   disabled={readonly}
-                  className="h-8 rounded border border-gray-300 px-2 text-sm disabled:bg-gray-50 disabled:text-gray-500"
+                  className="h-8 rounded border border-gray-300 dark:border-gray-600 dark:bg-muted dark:text-foreground px-2 text-sm disabled:bg-gray-50 dark:disabled:bg-muted disabled:text-gray-500 dark:disabled:text-gray-400"
                 />
-                <span className="text-gray-400 text-sm">to</span>
+                <span className="text-gray-400 dark:text-gray-500 text-sm">to</span>
                 <input
                   type="time"
                   value={daySchedule?.end ?? '18:00'}
                   onChange={(e) => handleTimeChange(key, 'end', e.target.value)}
                   disabled={readonly}
-                  className="h-8 rounded border border-gray-300 px-2 text-sm disabled:bg-gray-50 disabled:text-gray-500"
+                  className="h-8 rounded border border-gray-300 dark:border-gray-600 dark:bg-muted dark:text-foreground px-2 text-sm disabled:bg-gray-50 dark:disabled:bg-muted disabled:text-gray-500 dark:disabled:text-gray-400"
                 />
               </div>
             ) : (
-              <span className="text-sm text-gray-400 italic">Unavailable</span>
+              <span className="text-sm text-gray-400 dark:text-gray-500 italic">Unavailable</span>
             )}
           </div>
         );

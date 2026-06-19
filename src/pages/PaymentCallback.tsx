@@ -22,7 +22,7 @@ export function PaymentCallback() {
         <div className="text-center space-y-4">
           <XCircle className="h-16 w-16 text-red-400 mx-auto" />
           <h1 className="text-xl font-semibold">Invalid Payment Link</h1>
-          <p className="text-gray-500">No payment reference found in the URL.</p>
+          <p className="text-gray-500 dark:text-gray-400">No payment reference found in the URL.</p>
           <Button asChild>
             <Link to="/dashboard">Back to Dashboard</Link>
           </Button>
@@ -37,7 +37,7 @@ export function PaymentCallback() {
         <div className="text-center space-y-4">
           <Loader2 className="h-16 w-16 text-blue-400 mx-auto animate-spin" />
           <h1 className="text-xl font-semibold">Verifying Payment...</h1>
-          <p className="text-gray-500">Please wait while we confirm your payment.</p>
+          <p className="text-gray-500 dark:text-gray-400">Please wait while we confirm your payment.</p>
         </div>
       </div>
     );
@@ -49,8 +49,8 @@ export function PaymentCallback() {
         <div className="text-center space-y-4">
           <XCircle className="h-16 w-16 text-red-400 mx-auto" />
           <h1 className="text-xl font-semibold">Verification Failed</h1>
-          <p className="text-gray-500">We couldn't verify your payment. Please contact support.</p>
-          <p className="text-xs text-gray-400">Reference: {reference}</p>
+          <p className="text-gray-500 dark:text-gray-400">We couldn't verify your payment. Please contact support.</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500">Reference: {reference}</p>
           <Button asChild>
             <Link to="/dashboard">Back to Dashboard</Link>
           </Button>
@@ -65,11 +65,11 @@ export function PaymentCallback() {
         {isSuccess ? (
           <>
             <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
-            <h1 className="text-xl font-semibold text-green-700">Payment Successful!</h1>
-            <p className="text-gray-500">
+            <h1 className="text-xl font-semibold text-green-700 dark:text-green-400">Payment Successful!</h1>
+            <p className="text-gray-500 dark:text-gray-400">
               Your payment of ₦{paymentData.amount?.toLocaleString()} has been confirmed.
             </p>
-            <div className="text-xs text-gray-400 space-y-1">
+            <div className="text-xs text-gray-400 dark:text-gray-500 space-y-1">
               <p>Reference: {paymentData.reference}</p>
               {paymentData.channel && <p>Channel: {paymentData.channel}</p>}
             </div>
@@ -77,8 +77,8 @@ export function PaymentCallback() {
         ) : (
           <>
             <XCircle className="h-16 w-16 text-red-400 mx-auto" />
-            <h1 className="text-xl font-semibold text-red-700">Payment Failed</h1>
-            <p className="text-gray-500">
+            <h1 className="text-xl font-semibold text-red-700 dark:text-red-400">Payment Failed</h1>
+            <p className="text-gray-500 dark:text-gray-400">
               Your payment could not be processed. Please try again.
             </p>
           </>

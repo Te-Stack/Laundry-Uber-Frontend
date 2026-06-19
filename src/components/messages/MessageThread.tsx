@@ -26,7 +26,7 @@ export function MessageThread({ userId }: MessageThreadProps) {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400">
+      <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-500">
         Loading messages...
       </div>
     );
@@ -34,7 +34,7 @@ export function MessageThread({ userId }: MessageThreadProps) {
 
   if (messages.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+      <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-500 text-sm">
         No messages yet. Start the conversation!
       </div>
     );
@@ -62,18 +62,18 @@ export function MessageThread({ userId }: MessageThreadProps) {
             )}
             <div className={`max-w-xs lg:max-w-md ${isMine ? 'items-end' : 'items-start'} flex flex-col`}>
               {!isMine && (
-                <span className="text-xs text-gray-500 mb-1">{senderName}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 mb-1">{senderName}</span>
               )}
               <div
                 className={`px-3 py-2 rounded-2xl text-sm ${
                   isMine
                     ? 'bg-blue-600 text-white rounded-br-sm'
-                    : 'bg-gray-100 text-gray-900 rounded-bl-sm'
+                    : 'bg-gray-100 dark:bg-muted text-gray-900 dark:text-foreground rounded-bl-sm'
                 }`}
               >
                 {msg.content}
               </div>
-              <span className="text-xs text-gray-400 mt-1">{time}</span>
+              <span className="text-xs text-gray-400 dark:text-gray-500 mt-1">{time}</span>
             </div>
           </div>
         );

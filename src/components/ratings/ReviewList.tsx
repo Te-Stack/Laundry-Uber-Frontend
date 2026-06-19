@@ -19,7 +19,7 @@ interface ReviewListProps {
 export function ReviewList({ reviews }: ReviewListProps) {
   if (reviews.length === 0) {
     return (
-      <p className="text-sm text-gray-400 text-center py-4">No reviews yet.</p>
+      <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-4">No reviews yet.</p>
     );
   }
 
@@ -37,13 +37,13 @@ export function ReviewList({ reviews }: ReviewListProps) {
           <div className="flex-1">
             <div className="flex items-center justify-between gap-2">
               <span className="font-medium text-sm">{r.customerName}</span>
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-gray-400 dark:text-gray-500">
                 {new Date(r.date).toLocaleDateString()}
               </span>
             </div>
             <StarRating value={r.rating} readonly size="sm" />
             {r.review && (
-              <p className="text-sm text-gray-600 mt-1">{r.review}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{r.review}</p>
             )}
           </div>
         </div>
