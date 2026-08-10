@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ErrorBanner } from "@/components/ui/ErrorBanner"
-import { MapPin, Clock, MessageCircle, CheckCircle, Truck, Package } from "lucide-react"
+import { Location01Icon, TimeQuarterIcon, Message01Icon, TickDouble02Icon, TruckDeliveryIcon, PackageIcon } from "hugeicons-react"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { useApp } from "@/contexts/AppContext"
 import { useAsyncAction } from "@/hooks/useAsyncAction"
@@ -89,7 +89,7 @@ export function ProviderDashboard() {
                     <TabsContent value="available">
                         <div className="space-y-4">
                             {availableRequests.length === 0 ? (
-                                <Card><CardContent className="text-center py-8"><Clock className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" /><p className="text-gray-500 dark:text-gray-400">No available requests at the moment.</p></CardContent></Card>
+                                <Card><CardContent className="text-center py-8"><TimeQuarterIcon className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" /><p className="text-gray-500 dark:text-gray-400">No available requests at the moment.</p></CardContent></Card>
                             ) : (
                                 availableRequests.map((request) => (
                                     <Card key={request.id}>
@@ -108,17 +108,17 @@ export function ProviderDashboard() {
                                             </div>
                                             <div className="mb-4">
                                                 <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Pickup Address:</p>
-                                                <p className="text-sm flex items-center"><MapPin className="w-4 h-4 mr-1" />{request.pickupAddress}</p>
+                                                <p className="text-sm flex items-center"><Location01Icon className="w-4 h-4 mr-1" />{request.pickupAddress}</p>
                                             </div>
                                             {request.specialInstructions && (
                                                 <div className="mb-4"><p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Special Instructions:</p><p className="text-sm bg-gray-50 dark:bg-muted p-2 rounded">{request.specialInstructions}</p></div>
                                             )}
                                             <div className="flex space-x-2">
                                                 <Button onClick={() => { clearError(); void handleAcceptRequest(request.id) }} disabled={isLoading}>
-                                                    <CheckCircle className="w-4 h-4 mr-2" />{isLoading ? "Working..." : "Accept Request"}
+                                                    <TickDouble02Icon className="w-4 h-4 mr-2" />{isLoading ? "Working..." : "Accept Request"}
                                                 </Button>
                                                 <Button variant="outline" onClick={() => navigate(`/messages/${request.customerId}`)}>
-                                                    <MessageCircle className="w-4 h-4 mr-2" />Message Customer
+                                                    <Message01Icon className="w-4 h-4 mr-2" />Message Customer
                                                 </Button>
                                             </div>
                                         </CardContent>
@@ -130,7 +130,7 @@ export function ProviderDashboard() {
                     <TabsContent value="active">
                         <div className="space-y-4">
                             {myRequests.length === 0 ? (
-                                <Card><CardContent className="text-center py-8"><Package className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" /><p className="text-gray-500 dark:text-gray-400">No active jobs. Accept some requests to get started!</p></CardContent></Card>
+                                <Card><CardContent className="text-center py-8"><PackageIcon className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" /><p className="text-gray-500 dark:text-gray-400">No active jobs. Accept some requests to get started!</p></CardContent></Card>
                             ) : (
                                 myRequests.map((request) => (
                                     <Card key={request.id}>
@@ -151,7 +151,7 @@ export function ProviderDashboard() {
                                                 <div className="flex flex-wrap gap-2">
                                                     {request.status === "accepted" && (
                                                         <Button size="sm" onClick={() => { clearError(); void handleUpdateStatus(request.id, "picked_up") }} disabled={isLoading}>
-                                                            <Truck className="w-4 h-4 mr-1" />Mark as Picked Up
+                                                            <TruckDeliveryIcon className="w-4 h-4 mr-1" />Mark as Picked Up
                                                         </Button>
                                                     )}
                                                     {request.status === "picked_up" && (

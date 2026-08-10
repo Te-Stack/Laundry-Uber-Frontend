@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ErrorBanner } from "@/components/ui/ErrorBanner"
-import { Shirt, MessageCircle, Star } from "lucide-react"
+import { TShirtIcon, Message01Icon, StarIcon } from "hugeicons-react"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { useApp } from "@/contexts/AppContext"
 import { useAsyncAction } from "@/hooks/useAsyncAction"
@@ -72,15 +72,15 @@ export function CustomerDashboard() {
                         customer: user!,
                         provider: apiRequest.provider
                             ? {
-                                  id: apiRequest.provider.id,
-                                  name: apiRequest.provider.fullName,
-                                  email: apiRequest.provider.email,
-                                  phone: apiRequest.provider.phoneNumber,
-                                  type: apiRequest.provider.userType,
-                                  location: { lat: 0, lng: 0, address: "" },
-                                  rating: apiRequest.provider.rating,
-                                  isOnline: apiRequest.provider.isOnline,
-                              }
+                                id: apiRequest.provider.id,
+                                name: apiRequest.provider.fullName,
+                                email: apiRequest.provider.email,
+                                phone: apiRequest.provider.phoneNumber,
+                                type: apiRequest.provider.userType,
+                                location: { lat: 0, lng: 0, address: "" },
+                                rating: apiRequest.provider.rating,
+                                isOnline: apiRequest.provider.isOnline,
+                            }
                             : undefined,
                     },
                 ])
@@ -116,7 +116,7 @@ export function CustomerDashboard() {
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="mb-8">
                     <Button onClick={() => setShowRequestForm(true)} className="mb-4">
-                        <Shirt className="w-4 h-4 mr-2" />Request Laundry Service
+                        <TShirtIcon className="w-4 h-4 mr-2" />Request Laundry Service
                     </Button>
                     {showRequestForm && (
                         <Card className="mb-6">
@@ -157,7 +157,7 @@ export function CustomerDashboard() {
                 <div className="space-y-6">
                     <h2 className="text-xl font-semibold">Your Requests</h2>
                     {userRequests.length === 0 ? (
-                        <Card><CardContent className="text-center py-8"><Shirt className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" /><p className="text-gray-500 dark:text-gray-400">No laundry requests yet. Create your first request!</p></CardContent></Card>
+                        <Card><CardContent className="text-center py-8"><TShirtIcon className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" /><p className="text-gray-500 dark:text-gray-400">No laundry requests yet. Create your first request!</p></CardContent></Card>
                     ) : (
                         <div className="grid gap-4">
                             {userRequests.map((request) => (
@@ -179,10 +179,10 @@ export function CustomerDashboard() {
                                                 <Avatar><AvatarFallback>{request.provider.name.charAt(0)}</AvatarFallback></Avatar>
                                                 <div>
                                                     <p className="font-medium">{request.provider.name}</p>
-                                                    <div className="flex items-center space-x-2"><Star className="w-4 h-4 text-yellow-400 fill-current" /><span className="text-sm">{request.provider.rating}</span></div>
+                                                    <div className="flex items-center space-x-2"><StarIcon className="w-4 h-4 text-yellow-400 fill-current" /><span className="text-sm">{request.provider.rating}</span></div>
                                                 </div>
                                                 <Button size="sm" variant="outline" className="ml-auto" onClick={() => navigate(`/messages/${request.provider!.id}`)}>
-                                                    <MessageCircle className="w-4 h-4 mr-1" />Message
+                                                    <Message01Icon className="w-4 h-4 mr-1" />Message
                                                 </Button>
                                             </div>
                                         )}

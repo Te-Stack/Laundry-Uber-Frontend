@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Navigation } from '@/components/Navigation';
-import { Star, LogOut, Pencil } from 'lucide-react';
+import { StarIcon, Logout01Icon, Edit02Icon } from 'hugeicons-react';
 
 /**
  * User profile page with view/edit mode toggle and logout.
@@ -67,7 +67,7 @@ export function Profile() {
                   </Badge>
                   {(user.rating ?? 0) > 0 && (
                     <span className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-                      <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
+                      <StarIcon className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
                       {(user.rating ?? 0).toFixed(1)} ({user.totalRatings ?? 0})
                     </span>
                   )}
@@ -79,7 +79,7 @@ export function Profile() {
               variant="outline"
               onClick={() => setIsEditing((prev) => !prev)}
             >
-              <Pencil className="h-3.5 w-3.5 mr-1" />
+              <Edit02Icon className="h-3.5 w-3.5 mr-1" />
               {isEditing ? 'Cancel' : 'Edit'}
             </Button>
           </div>
@@ -127,7 +127,7 @@ export function Profile() {
             className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 border-red-200 dark:border-red-800"
             onClick={handleLogout}
           >
-            <LogOut className="h-4 w-4 mr-2" />
+            <Logout01Icon className="h-4 w-4 mr-2" />
             Sign Out
           </Button>
         </div>

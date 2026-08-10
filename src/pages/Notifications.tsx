@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShoppingBag, CreditCard, MessageCircle, Info, Bell } from 'lucide-react';
+import { ShoppingBag01Icon, CreditCardIcon, Message01Icon, InformationCircleIcon, Notification02Icon } from 'hugeicons-react';
 import { useNotifications, useMarkAllNotificationsRead, useMarkNotificationRead } from '@/hooks/useNotifications';
 import { Button } from '@/components/ui/button';
 import { Navigation } from '@/components/Navigation';
@@ -15,10 +15,10 @@ const FILTER_TABS = [
 
 function getTypeIcon(type: NotificationType) {
   switch (type) {
-    case 'order': return <ShoppingBag className="h-5 w-5 text-blue-500" />;
-    case 'payment': return <CreditCard className="h-5 w-5 text-green-500" />;
-    case 'message': return <MessageCircle className="h-5 w-5 text-purple-500" />;
-    default: return <Info className="h-5 w-5 text-gray-500 dark:text-gray-400" />;
+    case 'order': return <ShoppingBag01Icon className="h-5 w-5 text-blue-500" />;
+    case 'payment': return <CreditCardIcon className="h-5 w-5 text-green-500" />;
+    case 'message': return <Message01Icon className="h-5 w-5 text-purple-500" />;
+    default: return <InformationCircleIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />;
   }
 }
 
@@ -83,7 +83,7 @@ export function Notifications() {
           <p className="text-center text-gray-400 dark:text-gray-500 py-12">Loading notifications...</p>
         ) : notifications.length === 0 ? (
           <div className="text-center py-12 text-gray-400 dark:text-gray-500">
-            <Bell className="h-12 w-12 mx-auto mb-3 opacity-40" />
+            <Notification02Icon className="h-12 w-12 mx-auto mb-3 opacity-40" />
             <p>No notifications found.</p>
           </div>
         ) : (

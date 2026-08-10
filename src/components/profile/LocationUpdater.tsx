@@ -1,7 +1,7 @@
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { useUpdateLocation } from '@/hooks/useProfile';
 import { Button } from '@/components/ui/button';
-import { MapPin } from 'lucide-react';
+import { Location01Icon } from 'hugeicons-react';
 
 /**
  * Shows current geolocation coordinates and allows updating them on the server.
@@ -18,7 +18,7 @@ export function LocationUpdater() {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+        <Location01Icon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
         <span className="text-sm font-medium">Current Location</span>
       </div>
 

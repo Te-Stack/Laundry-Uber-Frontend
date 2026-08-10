@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shirt, Droplets } from "lucide-react"
+import { TShirtIcon, DropletIcon } from "hugeicons-react"
 
 // ============================================================================
 // LandingPage
@@ -25,7 +25,7 @@ export function LandingPage({ onUserTypeSelect }: LandingPageProps) {
                     <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onUserTypeSelect("customer")}>
                         <CardHeader>
                             <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Shirt className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                                <TShirtIcon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                             </div>
                             <CardTitle>I Need Laundry Service</CardTitle>
                             <CardDescription>Get your laundry done by trusted local providers</CardDescription>
@@ -42,7 +42,7 @@ export function LandingPage({ onUserTypeSelect }: LandingPageProps) {
                     <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onUserTypeSelect("provider")}>
                         <CardHeader>
                             <div className="w-16 h-16 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Droplets className="w-8 h-8 text-green-600 dark:text-green-400" />
+                                <DropletIcon className="w-8 h-8 text-green-600 dark:text-green-400" />
                             </div>
                             <CardTitle>I Provide Laundry Service</CardTitle>
                             <CardDescription>Earn money by helping others with their laundry</CardDescription>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell, ShoppingBag, CreditCard, MessageCircle, Info } from 'lucide-react';
+import { Notification02Icon, ShoppingBag01Icon, CreditCardIcon, Message01Icon, InformationCircleIcon } from 'hugeicons-react';
 import { useNotifications, useMarkNotificationRead } from '@/hooks/useNotifications';
 import type { NotificationType } from '@/types/api';
 
@@ -10,10 +10,10 @@ interface NotificationDropdownProps {
 
 function getTypeIcon(type: NotificationType) {
   switch (type) {
-    case 'order': return <ShoppingBag className="h-4 w-4 text-blue-500" />;
-    case 'payment': return <CreditCard className="h-4 w-4 text-green-500" />;
-    case 'message': return <MessageCircle className="h-4 w-4 text-purple-500" />;
-    default: return <Info className="h-4 w-4 text-gray-500 dark:text-gray-400" />;
+    case 'order': return <ShoppingBag01Icon className="h-4 w-4 text-blue-500" />;
+    case 'payment': return <CreditCardIcon className="h-4 w-4 text-green-500" />;
+    case 'message': return <Message01Icon className="h-4 w-4 text-purple-500" />;
+    default: return <InformationCircleIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />;
   }
 }
 
@@ -57,7 +57,7 @@ export function NotificationDropdown({ onClose }: NotificationDropdownProps) {
     >
       <div className="flex items-center justify-between px-4 py-3 border-b">
         <span className="font-semibold text-sm">Notifications</span>
-        <Bell className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+        <Notification02Icon className="h-4 w-4 text-gray-400 dark:text-gray-500" />
       </div>
 
       {notifications.length === 0 ? (

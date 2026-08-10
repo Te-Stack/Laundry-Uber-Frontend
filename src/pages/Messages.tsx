@@ -3,7 +3,7 @@ import { ConversationList } from '@/components/messages/ConversationList';
 import { MessageThread } from '@/components/messages/MessageThread';
 import { MessageInput } from '@/components/messages/MessageInput';
 import { Navigation } from '@/components/Navigation';
-import { MessageCircle } from 'lucide-react';
+import { Message01Icon } from 'hugeicons-react';
 
 /**
  * Messages page with conversation list on the left and thread on the right.
@@ -34,7 +34,7 @@ export function Messages() {
             </>
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-gray-400 dark:text-gray-500 gap-3">
-              <MessageCircle className="h-12 w-12" />
+              <Message01Icon className="h-12 w-12" />
               <p className="text-sm">Select a conversation to start messaging</p>
             </div>
           )}

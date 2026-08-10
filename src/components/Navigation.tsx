@@ -1,14 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
 import {
-  LayoutDashboard,
-  ShoppingBag,
-  Map,
-  MessageCircle,
-  Bell,
-  User,
-  Calendar,
-  Briefcase,
-} from 'lucide-react';
+  DashboardSquare01Icon,
+  ShoppingBag01Icon,
+  Location01Icon,
+  Message01Icon,
+  Notification02Icon,
+  UserIcon,
+  Calendar03Icon,
+  Briefcase01Icon,
+} from 'hugeicons-react';
 import { NotificationBell } from '@/components/notifications/NotificationBell';
 import { ConnectionStatus } from '@/components/realtime/ConnectionStatus';
 import { useCurrentUser } from '@/hooks/useProfile';
@@ -20,21 +20,21 @@ interface NavLink {
 }
 
 const customerLinks: NavLink[] = [
-  { to: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
-  { to: '/services', label: 'Services', icon: <ShoppingBag className="h-4 w-4" /> },
-  { to: '/map', label: 'Map', icon: <Map className="h-4 w-4" /> },
-  { to: '/messages', label: 'Messages', icon: <MessageCircle className="h-4 w-4" /> },
-  { to: '/notifications', label: 'Notifications', icon: <Bell className="h-4 w-4" /> },
-  { to: '/profile', label: 'Profile', icon: <User className="h-4 w-4" /> },
+  { to: '/dashboard', label: 'Dashboard', icon: <DashboardSquare01Icon className="h-4 w-4" /> },
+  { to: '/services', label: 'Services', icon: <ShoppingBag01Icon className="h-4 w-4" /> },
+  { to: '/map', label: 'Map', icon: <Location01Icon className="h-4 w-4" /> },
+  { to: '/messages', label: 'Messages', icon: <Message01Icon className="h-4 w-4" /> },
+  { to: '/notifications', label: 'Notifications', icon: <Notification02Icon className="h-4 w-4" /> },
+  { to: '/profile', label: 'Profile', icon: <UserIcon className="h-4 w-4" /> },
 ];
 
 const providerLinks: NavLink[] = [
-  { to: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
-  { to: '/my-services', label: 'My Services', icon: <Briefcase className="h-4 w-4" /> },
-  { to: '/schedule', label: 'Schedule', icon: <Calendar className="h-4 w-4" /> },
-  { to: '/messages', label: 'Messages', icon: <MessageCircle className="h-4 w-4" /> },
-  { to: '/notifications', label: 'Notifications', icon: <Bell className="h-4 w-4" /> },
-  { to: '/profile', label: 'Profile', icon: <User className="h-4 w-4" /> },
+  { to: '/dashboard', label: 'Dashboard', icon: <DashboardSquare01Icon className="h-4 w-4" /> },
+  { to: '/my-services', label: 'My Services', icon: <Briefcase01Icon className="h-4 w-4" /> },
+  { to: '/schedule', label: 'Schedule', icon: <Calendar03Icon className="h-4 w-4" /> },
+  { to: '/messages', label: 'Messages', icon: <Message01Icon className="h-4 w-4" /> },
+  { to: '/notifications', label: 'Notifications', icon: <Notification02Icon className="h-4 w-4" /> },
+  { to: '/profile', label: 'Profile', icon: <UserIcon className="h-4 w-4" /> },
 ];
 
 /**

@@ -1,6 +1,7 @@
 import type React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { ArrowLeft01Icon } from "hugeicons-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -17,9 +18,10 @@ import { LandingPage } from "@/pages/LandingPage"
 interface AuthFormProps {
     userType: "customer" | "provider"
     onLogin: () => void
+    onBack: () => void
 }
 
-function AuthForm({ userType, onLogin }: AuthFormProps) {
+function AuthForm({ userType, onLogin, onBack }: AuthFormProps) {
     const [isLogin, setIsLogin] = useState(true)
     const [formData, setFormData] = useState({ fullName: "", email: "", phoneNumber: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
@@ -75,7 +77,17 @@ function AuthForm({ userType, onLogin }: AuthFormProps) {
         <div className="min-h-screen bg-gray-50 dark:bg-background flex items-center justify-center p-4">
             <Card className="w-full max-w-md">
                 <CardHeader>
-                    <CardTitle>{isLogin ? "Sign In" : "Sign Up"} as {userType === "customer" ? "Customer" : "Provider"}</CardTitle>
+                    <div className="flex items-center gap-2 mb-2">
+                        <button
+                            type="button"
+                            onClick={onBack}
+                            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+                            aria-label="Go back"
+                        >
+                            <ArrowLeft01Icon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                        </button>
+                        <CardTitle className="flex-1">{isLogin ? "Sign In" : "Sign Up"} as {userType === "customer" ? "Customer" : "Provider"}</CardTitle>
+                    </div>
                     <CardDescription>{isLogin ? "Welcome back!" : "Create your account to get started"}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -136,5 +148,5 @@ export function AuthGate() {
         return <LandingPage onUserTypeSelect={setSelectedUserType} />
     }
 
-    return <AuthForm userType={selectedUserType} onLogin={handleLogin} />
+    return <AuthForm userType={selectedUserType} onLogin={handleLogin} onBack={() => setSelectedUserType(null)} />
 }

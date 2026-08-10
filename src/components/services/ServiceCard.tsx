@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { StarIcon } from 'hugeicons-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -59,7 +59,7 @@ export function ServiceCard({ service, onBook }: ServiceCardProps) {
           <div className="flex items-center gap-2 pt-1 border-t">
             <span className="text-xs text-gray-500 dark:text-gray-400 truncate">{service.provider.fullName}</span>
             <div className="flex items-center gap-0.5 ml-auto flex-shrink-0">
-              <Star className="h-3 w-3 text-yellow-400 fill-current" />
+              <StarIcon className="h-3 w-3 text-yellow-400 fill-current" />
               <span className="text-xs text-gray-600 dark:text-gray-400">{service.provider.rating.toFixed(1)}</span>
             </div>
           </div>

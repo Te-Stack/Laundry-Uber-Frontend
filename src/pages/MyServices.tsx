@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, Pencil, Trash2 } from 'lucide-react';
+import { Add01Icon, Edit02Icon, Delete02Icon } from 'hugeicons-react';
 import { useMyServices, useDeleteService } from '@/hooks/useServices';
 import { ServiceForm } from '@/components/services/ServiceForm';
 import { DeleteServiceDialog } from '@/components/services/DeleteServiceDialog';
@@ -33,7 +33,7 @@ export function MyServices() {
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">My Services</h1>
           <Button onClick={() => { setEditingService(null); setShowForm(true); }}>
-            <Plus className="h-4 w-4 mr-2" />
+            <Add01Icon className="h-4 w-4 mr-2" />
             Add Service
           </Button>
         </div>
@@ -87,7 +87,7 @@ export function MyServices() {
                     variant="outline"
                     onClick={() => { setEditingService(service); setShowForm(true); }}
                   >
-                    <Pencil className="h-3.5 w-3.5" />
+                    <Edit02Icon className="h-3.5 w-3.5" />
                   </Button>
                   <Button
                     size="sm"
@@ -95,7 +95,7 @@ export function MyServices() {
                     className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50"
                     onClick={() => setConfirmDeleteId(service.id)}
                   >
-                    <Trash2 className="h-3.5 w-3.5" />
+                    <Delete02Icon className="h-3.5 w-3.5" />
                   </Button>
                 </div>
               </div>

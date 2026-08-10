@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Phone, Star } from 'lucide-react';
+import { Call02Icon, StarIcon } from 'hugeicons-react';
 import { useProviderProfile, useProviderSchedule } from '@/hooks/useProviders';
 import { ScheduleGrid } from '@/components/schedule/ScheduleGrid';
 import { ReviewList, type Review } from '@/components/ratings/ReviewList';
@@ -59,12 +59,12 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
           </div>
           <div className="flex items-center gap-3 mt-1 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-1">
-              <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+              <StarIcon className="h-4 w-4 text-yellow-400 fill-yellow-400" />
               {provider.rating.toFixed(1)} ({provider.totalRatings} ratings)
             </span>
             {provider.phoneNumber && (
               <span className="flex items-center gap-1">
-                <Phone className="h-3.5 w-3.5" />
+                <Call02Icon className="h-3.5 w-3.5" />
                 {provider.phoneNumber}
               </span>
             )}

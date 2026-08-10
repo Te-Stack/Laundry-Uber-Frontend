@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Star } from 'lucide-react';
+import { StarIcon } from 'hugeicons-react';
 
 interface StarRatingProps {
   value: number;
@@ -37,7 +37,7 @@ export function StarRating({ value, onChange, readonly = false, size = 'md' }: S
           className={`${readonly ? 'cursor-default' : 'cursor-pointer hover:scale-110 transition-transform'} focus:outline-none`}
           aria-label={`${star} star${star !== 1 ? 's' : ''}`}
         >
-          <Star
+          <StarIcon
             className={`${sizeClasses[size]} transition-colors ${
               star <= displayValue
                 ? 'text-yellow-400 fill-yellow-400'
