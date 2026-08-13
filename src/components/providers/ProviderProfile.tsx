@@ -40,17 +40,20 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
 
   // Build placeholder reviews from provider data (real reviews would come from a dedicated endpoint)
   const reviews: Review[] = [];
+  const pName = provider.fullName || (provider as any).name || "Provider";
+  const pRating = provider.rating != null ? Number(provider.rating).toFixed(1) : "5.0";
+  const pTotalRatings = provider.totalRatings || 0;
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-start gap-4">
         <Avatar className="h-16 w-16">
-          <AvatarFallback className="text-xl">{provider.fullName.charAt(0)}</AvatarFallback>
+          <AvatarFallback className="text-xl">{pName.charAt(0)}</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap">
-            <h2 className="text-xl font-bold">{provider.fullName}</h2>
+            <h2 className="text-xl font-bold">{pName}</h2>
             <Badge
               className={provider.isOnline ? 'bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400' : 'bg-gray-100 dark:bg-muted text-gray-500 dark:text-gray-400'}
             >
@@ -60,7 +63,7 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
           <div className="flex items-center gap-3 mt-1 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-1">
               <StarIcon className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-              {provider.rating.toFixed(1)} ({provider.totalRatings} ratings)
+              {pRating} ({pTotalRatings} ratings)
             </span>
             {provider.phoneNumber && (
               <span className="flex items-center gap-1">

@@ -56,6 +56,8 @@ export interface NearbyProvider {
   totalRatings: number;
   isOnline: boolean;
   distance: number;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface ProviderSchedule {

@@ -26,4 +26,6 @@ export interface SocketProviderLocationPayload {
   providerId: string;
   latitude: number;
   longitude: number;
+  accuracy: number | null;
+  timestamp: number;
 }

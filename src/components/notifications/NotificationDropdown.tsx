@@ -72,6 +72,8 @@ export function NotificationDropdown({ onClose }: NotificationDropdownProps) {
               onClick={() => {
                 if (!notif.isRead) markRead(notif.id);
                 onClose();
+                if (notif.type === 'order') navigate('/dashboard');
+                else if (notif.type === 'message') navigate('/messages');
               }}
               className={`w-full flex items-start gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-muted text-left transition-colors ${
                 !notif.isRead ? 'bg-blue-50/50 dark:bg-blue-900/20' : ''

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingBag01Icon, CreditCardIcon, Message01Icon, InformationCircleIcon, Notification02Icon } from 'hugeicons-react';
 import { useNotifications, useMarkAllNotificationsRead, useMarkNotificationRead } from '@/hooks/useNotifications';
 import { Button } from '@/components/ui/button';
@@ -36,6 +37,7 @@ function timeAgo(dateStr: string): string {
  * Full notifications page with filter tabs and mark-all-read button.
  */
 export function Notifications() {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState<string | undefined>(undefined);
   const { data: result, isLoading } = useNotifications(
     activeFilter ? { type: activeFilter } : undefined
@@ -91,7 +93,11 @@ export function Notifications() {
             {notifications.map((notif) => (
               <button
                 key={notif.id}
-                onClick={() => { if (!notif.isRead) markRead(notif.id); }}
+                onClick={() => {
+                  if (!notif.isRead) markRead(notif.id);
+                  if (notif.type === 'order') navigate('/dashboard');
+                  else if (notif.type === 'message') navigate('/messages');
+                }}
                 className={`w-full flex items-start gap-4 px-4 py-4 hover:bg-gray-50 dark:hover:bg-muted text-left transition-colors ${
                   !notif.isRead ? 'bg-blue-50/40 dark:bg-blue-900/20' : ''
                 }`}

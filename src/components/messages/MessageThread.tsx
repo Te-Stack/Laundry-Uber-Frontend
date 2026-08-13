@@ -44,7 +44,7 @@ export function MessageThread({ userId }: MessageThreadProps) {
     <div className="flex flex-col gap-3 p-4 overflow-y-auto">
       {messages.map((msg) => {
         const isMine = msg.senderId === currentUserId;
-        const senderName = msg.sender?.fullName ?? (isMine ? 'You' : 'Them');
+        const senderName = msg.sender?.fullName ?? (msg.sender as any)?.name ?? (isMine ? 'You' : 'Them');
         const time = new Date(msg.createdAt).toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit',

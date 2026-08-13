@@ -7,13 +7,14 @@ import type { SocketProviderLocationPayload } from '@/types/api';
 interface ProviderTrackerProps {
   requestId: string;
   destination: [number, number];
+  destinationLabel?: string;
 }
 
 /**
  * Real-time provider location tracker on a map.
  * Listens for providerLocationUpdate socket events and updates the marker.
  */
-export function ProviderTracker({ requestId, destination }: ProviderTrackerProps) {
+export function ProviderTracker({ requestId, destination, destinationLabel = 'Destination' }: ProviderTrackerProps) {
   const { socket, joinRoom, leaveRoom } = useSocket();
   const [providerPosition, setProviderPosition] = useState<[number, number] | null>(null);
 
@@ -38,7 +39,7 @@ export function ProviderTracker({ requestId, destination }: ProviderTrackerProps
   const center = providerPosition ?? destination;
 
   const markers: MapMarker[] = [
-    { id: 'destination', position: destination, label: 'Delivery destination' },
+    { id: 'destination', position: destination, label: destinationLabel },
     ...(providerPosition
       ? [{ id: 'provider', position: providerPosition, label: 'Provider location' }]
       : []),

@@ -11,7 +11,11 @@ export interface LaundryRequest {
   status: RequestStatus;
   paymentStatus: PaymentStatus;
   pickupAddress: string;
+  pickupLatitude: number | null;
+  pickupLongitude: number | null;
   deliveryAddress: string;
+  deliveryLatitude: number | null;
+  deliveryLongitude: number | null;
   pickupTime: string; // ISO 8601 date string
   items: RequestItem[];
   totalAmount: number;
@@ -44,7 +48,11 @@ export interface RequestItem {
 
 export interface CreateRequestPayload {
   pickupAddress: string;
+  pickupLatitude: number;
+  pickupLongitude: number;
   deliveryAddress: string;
+  deliveryLatitude: number;
+  deliveryLongitude: number;
   pickupTime: string; // ISO 8601 date string
   items: RequestItem[];
   totalAmount: number;

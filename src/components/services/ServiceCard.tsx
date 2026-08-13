@@ -57,10 +57,14 @@ export function ServiceCard({ service, onBook }: ServiceCardProps) {
 
         {service.provider && (
           <div className="flex items-center gap-2 pt-1 border-t">
-            <span className="text-xs text-gray-500 dark:text-gray-400 truncate">{service.provider.fullName}</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 truncate">
+              {service.provider.fullName || (service.provider as any).name || "Provider"}
+            </span>
             <div className="flex items-center gap-0.5 ml-auto flex-shrink-0">
               <StarIcon className="h-3 w-3 text-yellow-400 fill-current" />
-              <span className="text-xs text-gray-600 dark:text-gray-400">{service.provider.rating.toFixed(1)}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                {service.provider.rating != null ? Number(service.provider.rating).toFixed(1) : "5.0"}
+              </span>
             </div>
           </div>
         )}
