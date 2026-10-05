@@ -16,17 +16,18 @@ export function useCurrentUser() {
   const userData: User | null = session?.user ? {
     id: session.user.id,
     email: session.user.email,
+    name: session.user.name,
     fullName: session.user.name,
-    phoneNumber: (session.user as any).phoneNumber || '',
-    userType: ((session.user as any).userType || 'customer') as 'customer' | 'provider',
-    isOnline: (session.user as any).isOnline ?? false,
-    latitude: (session.user as any).latitude,
-    longitude: (session.user as any).longitude,
-    rating: (session.user as any).rating ?? 0,
-    totalRatings: (session.user as any).totalRatings ?? 0,
-    schedule: (session.user as any).schedule,
-    createdAt: session.user.createdAt?.toString() || '',
-    updatedAt: session.user.updatedAt?.toString() || '',
+    phoneNumber: session.user.phoneNumber || '',
+    userType: session.user.userType || 'customer',
+    isOnline: session.user.isOnline ?? false,
+    latitude: session.user.latitude,
+    longitude: session.user.longitude,
+    rating: session.user.rating ?? 0,
+    totalRatings: session.user.totalRatings ?? 0,
+    schedule: session.user.schedule ? (typeof session.user.schedule === 'string' ? JSON.parse(session.user.schedule) : session.user.schedule) : undefined,
+    createdAt: session.user.createdAt ? new Date(session.user.createdAt).toISOString() : '',
+    updatedAt: session.user.updatedAt ? new Date(session.user.updatedAt).toISOString() : '',
   } : null;
 
   return {

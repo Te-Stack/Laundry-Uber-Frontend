@@ -17,6 +17,6 @@ export function DashboardPage() {
     if (!session) return <Navigate to="/" replace />
 
     // Use session user type if available, fall back to AppContext user
-    const userType = (session.user as any)?.userType || user?.type
+    const userType = session.user?.userType || user?.type
     return userType === "provider" ? <ProviderDashboard /> : <CustomerDashboard />
 }

@@ -40,8 +40,8 @@ export function CustomerDashboard() {
     const navigate = useNavigate()
 
     const user = session?.user
-    const userLat = (user as any)?.latitude || DEFAULT_LAT
-    const userLng = (user as any)?.longitude || DEFAULT_LNG
+    const userLat = user?.latitude || DEFAULT_LAT
+    const userLng = user?.longitude || DEFAULT_LNG
 
     // Geolocation with fallback to profile coordinates
     const { coords } = useGeolocation()
@@ -384,7 +384,7 @@ export function CustomerDashboard() {
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {nearbyProviders.map((provider) => {
-                                const pName = provider.fullName || (provider as any).name || "Provider"
+                                const pName = provider.fullName || provider.name || "Provider"
                                 const pRating = provider.rating != null ? Number(provider.rating).toFixed(1) : "5.0"
                                 const pDistance = provider.distance != null ? Number(provider.distance).toFixed(1) : "0.5"
 
@@ -588,12 +588,12 @@ export function CustomerDashboard() {
                                                     <div className="flex items-center gap-3">
                                                         <Avatar className="h-9 w-9">
                                                             <AvatarFallback className="bg-blue-100 text-blue-700 text-xs font-bold">
-                                                                {(request.provider.fullName || (request.provider as any).name || "P").charAt(0)}
+                                                                {(request.provider.fullName || request.provider.name || "P").charAt(0)}
                                                             </AvatarFallback>
                                                         </Avatar>
                                                         <div>
                                                             <p className="text-sm font-medium leading-none">
-                                                                {request.provider.fullName || (request.provider as any).name}
+                                                                {request.provider.fullName || request.provider.name}
                                                             </p>
                                                             <p className="text-xs text-gray-500 mt-0.5">Assigned Provider</p>
                                                         </div>

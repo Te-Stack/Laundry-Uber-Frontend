@@ -52,12 +52,12 @@ export function ConversationList({ activeUserId }: ConversationListProps) {
             }`}
           >
             <Avatar className="h-10 w-10 flex-shrink-0">
-              <AvatarFallback>{(conv.otherUser.fullName || (conv.otherUser as any).name || "U").charAt(0)}</AvatarFallback>
+              <AvatarFallback>{(conv.otherUser.fullName || conv.otherUser.name || "U").charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <div className="flex justify-between items-baseline">
                 <span className="font-medium text-sm truncate">
-                  {conv.otherUser.fullName || (conv.otherUser as any).name || "User"}
+                  {conv.otherUser.fullName || conv.otherUser.name || "User"}
                 </span>
                 <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 flex-shrink-0">{time}</span>
               </div>

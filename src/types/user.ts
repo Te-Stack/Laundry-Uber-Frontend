@@ -26,17 +26,25 @@ export interface AuthResponse {
 export interface User {
   id: string;
   email: string;
-  fullName: string;
-  phoneNumber: string;
+  name?: string;
+  fullName?: string;
+  phoneNumber?: string;
   userType: 'customer' | 'provider';
-  isOnline: boolean;
+  isOnline?: boolean;
   latitude?: number;
   longitude?: number;
-  rating: number;
-  totalRatings: number;
+  rating?: number;
+  totalRatings?: number;
   schedule?: ProviderSchedule;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export function getUserDisplayName(
+  user?: { name?: string | null; fullName?: string | null } | null,
+  fallback = 'User'
+): string {
+  return user?.fullName || user?.name || fallback;
 }
 
 export interface UpdateProfilePayload {
@@ -51,7 +59,8 @@ export interface UpdateLocationPayload {
 
 export interface NearbyProvider {
   id: string;
-  fullName: string;
+  name?: string;
+  fullName?: string;
   rating: number;
   totalRatings: number;
   isOnline: boolean;

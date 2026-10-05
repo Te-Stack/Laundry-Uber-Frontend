@@ -39,8 +39,8 @@ export function ProviderMap() {
   const { mutate: saveLocation, isPending: isSaving, isSuccess: isSaved } = useUpdateLocation();
 
   const user = session?.user;
-  const userLat = (user as any)?.latitude || DEFAULT_LAT;
-  const userLng = (user as any)?.longitude || DEFAULT_LNG;
+  const userLat = user?.latitude || DEFAULT_LAT;
+  const userLng = user?.longitude || DEFAULT_LNG;
 
   const { coords } = useGeolocation();
 
@@ -109,7 +109,7 @@ export function ProviderMap() {
     { id: 'me', position: center, label: `📍 Your Location (${locationLabel})` },
     ...providers.flatMap((p) => {
       if (p.latitude == null || p.longitude == null) return [];
-      const pName = p.fullName || (p as any).name || 'Provider';
+      const pName = p.fullName || p.name || 'Provider';
       const pRating = p.rating != null ? Number(p.rating).toFixed(1) : '5.0';
       const pDist = p.distance != null ? Number(p.distance).toFixed(1) : '0.5';
       return {
@@ -234,7 +234,7 @@ export function ProviderMap() {
             </Card>
           ) : (
             providers.map((p) => {
-              const pName = p.fullName || (p as any).name || 'Provider';
+              const pName = p.fullName || p.name || 'Provider';
               const pRating = p.rating != null ? Number(p.rating).toFixed(1) : '5.0';
               const pDist = p.distance != null ? Number(p.distance).toFixed(1) : '0.5';
               const isSelected = selectedProviderId === p.id;

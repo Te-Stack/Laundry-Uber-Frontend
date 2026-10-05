@@ -40,7 +40,7 @@ export function ProviderProfile({ providerId }: ProviderProfileProps) {
 
   // Build placeholder reviews from provider data (real reviews would come from a dedicated endpoint)
   const reviews: Review[] = [];
-  const pName = provider.fullName || (provider as any).name || "Provider";
+  const pName = provider.fullName || provider.name || "Provider";
   const pRating = provider.rating != null ? Number(provider.rating).toFixed(1) : "5.0";
   const pTotalRatings = provider.totalRatings || 0;
 

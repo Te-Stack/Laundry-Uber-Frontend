@@ -19,15 +19,15 @@ function AppInner() {
               id: session.user.id,
               name: session.user.name,
               email: session.user.email,
-              phone: (session.user as any).phoneNumber || "",
-              type: (session.user as any).userType || "customer",
+              phone: session.user.phoneNumber || "",
+              type: session.user.userType || "customer",
               location: {
-                  lat: (session.user as any).latitude || 0,
-                  lng: (session.user as any).longitude || 0,
+                  lat: session.user.latitude || 0,
+                  lng: session.user.longitude || 0,
                   address: "",
               },
-              rating: (session.user as any).rating,
-              isOnline: (session.user as any).isOnline,
+              rating: session.user.rating,
+              isOnline: session.user.isOnline,
           }
         : null
 

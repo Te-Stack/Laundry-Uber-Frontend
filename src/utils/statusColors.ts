@@ -1,8 +1,10 @@
+import type { RequestStatus } from '@/types/requests';
+
 /**
  * Maps a LaundryRequest status string to Tailwind CSS badge colour classes.
  * Single source of truth — imported by CustomerDashboard and ProviderDashboard.
  */
-export const STATUS_COLORS: Record<string, string> = {
+export const STATUS_COLORS: Record<RequestStatus, string> = {
   pending:          'bg-yellow-100 text-yellow-800',
   accepted:         'bg-blue-100 text-blue-800',
   declined:         'bg-red-100 text-red-800',
@@ -17,5 +19,5 @@ export const STATUS_COLORS: Record<string, string> = {
  * Returns the Tailwind colour classes for the given request status.
  * Falls back to a neutral grey if the status is unrecognised.
  */
-export const getStatusColor = (status: string): string =>
-  STATUS_COLORS[status] ?? 'bg-gray-100 text-gray-800';
+export const getStatusColor = (status: RequestStatus | string): string =>
+  STATUS_COLORS[status as RequestStatus] ?? 'bg-gray-100 text-gray-800';

@@ -192,7 +192,7 @@ export function ProviderDashboard() {
                                                 <div>
                                                     <p className="text-xs font-semibold text-gray-500 uppercase">Customer</p>
                                                     <p className="text-sm font-medium mt-0.5">
-                                                        {request.customer?.fullName || (request.customer as any)?.name || "Customer"}
+                                                        {request.customer?.fullName || request.customer?.name || "Customer"}
                                                     </p>
                                                 </div>
                                                 <div>
@@ -284,7 +284,7 @@ export function ProviderDashboard() {
                                                         </Badge>
                                                     </div>
                                                     <p className="text-xs text-gray-500 mt-0.5">
-                                                        Customer: {request.customer?.fullName || (request.customer as any)?.name || "Valued Customer"} • Phone: {request.customer?.phoneNumber || "N/A"}
+                                                        Customer: {request.customer?.fullName || request.customer?.name || "Valued Customer"} • Phone: {request.customer?.phoneNumber || "N/A"}
                                                     </p>
                                                 </div>
                                                 <div className="text-right">
