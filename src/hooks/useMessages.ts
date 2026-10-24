@@ -47,9 +47,9 @@ export function useMessageThread(userId: string | null) {
       }
     };
 
-    socket.on('newMessage', handleNewMessage);
+    socket.on('message:receive', handleNewMessage);
     return () => {
-      socket.off('newMessage', handleNewMessage);
+      socket.off('message:receive', handleNewMessage);
     };
   }, [socket, userId, queryClient]);
 

@@ -31,9 +31,16 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     if (!session?.user) return;
 
     const socket = io(backendUrl, {
+      // Vercel Functions serve WebSockets natively but do not hold long-polling
+      // requests open, so the transport must be pinned to websocket.
+      // Path lives under /api so the Cloudflare Pages proxy can forward it.
+      path: '/api/socket.io',
+      transports: ['websocket'],
       withCredentials: true, // Send session cookie automatically
       reconnection: true,
-      reconnectionAttempts: 10,
+      // Connections are closed when the server function hits its max duration,
+      // so reconnect indefinitely rather than giving up.
+      reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 30000,
     });
